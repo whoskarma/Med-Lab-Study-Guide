@@ -1,44 +1,55 @@
-const flashcards = [
+function showSection(id){
+ document.getElementById('flashcards').style.display='none';
+ document.getElementById('test').style.display='none';
+ document.getElementById(id).style.display='block';
+}
 
-{question:"What is V1?",answer:"4th intercostal space, right sternal border. Views the septal wall."},
-{question:"What is V2?",answer:"4th intercostal space, left sternal border. Views the septal wall."},
-{question:"What is V3?",answer:"Placed between V2 and V4. Views the anterior wall."},
-{question:"What is V4?",answer:"5th intercostal space, left midclavicular line. Views the anterior wall."},
-{question:"What is V5?",answer:"Same level as V4 at the anterior axillary line. Views the lateral wall."},
-{question:"What is V6?",answer:"Same level as V4 at the midaxillary line. Views the lateral wall."},
-{question:"What does ECG stand for?",answer:"Electrocardiogram — a recording of the heart's electrical activity."},
-{question:"What is the P Wave?",answer:"Atrial depolarization. The atria contract and push blood into the ventricles."},
-{question:"What is the QRS Complex?",answer:"Ventricular depolarization. The ventricles contract and pump blood."},
-{question:"What is the T Wave?",answer:"Ventricular repolarization. The ventricles relax and refill."},
-{question:"What do V1 and V2 represent?",answer:"Septal leads."},
-{question:"What do V3 and V4 represent?",answer:"Anterior leads."},
-{question:"What do V5 and V6 represent?",answer:"Lateral leads."}
+const flashcards=[
+{question:'What is V1?',answer:'4th intercostal space, right sternal border. Views the septal wall.'},
+{question:'What is V2?',answer:'4th intercostal space, left sternal border. Views the septal wall.'},
+{question:'What is V3?',answer:'Between V2 and V4. Views the anterior wall.'},
+{question:'What is V4?',answer:'5th intercostal space, left midclavicular line. Views the anterior wall.'},
+{question:'What is V5?',answer:'Anterior axillary line. Views the lateral wall.'},
+{question:'What is V6?',answer:'Midaxillary line. Views the lateral wall.'},
+{question:'Which leads are septal?',answer:'V1-V2'},
+{question:'Which leads are anterior?',answer:'V3-V4'},
+{question:'Which leads are lateral?',answer:'V5-V6'},
+{question:'What is the QRS complex?',answer:'Ventricular depolarization.'},
+{question:'What is the T wave?',answer:'Ventricular repolarization.'}
 ];
 
-const container = document.getElementById("cards");
-
-flashcards.forEach(card => {
-let div=document.createElement("div");
-div.className="card";
-div.innerHTML=`<div><strong>${card.question}</strong><p class="answer">${card.answer}</p></div>`;
-div.onclick=function(){
-let answer=this.querySelector(".answer");
-answer.style.display=answer.style.display==="block" ? "none" : "block";
-}
-container.appendChild(div);
+const cards=document.getElementById('cards');
+flashcards.forEach(c=>{
+ let div=document.createElement('div');
+ div.className='card';
+ div.innerHTML=`<strong>${c.question}</strong><p class="answer">${c.answer}</p>`;
+ div.onclick=()=>{let a=div.querySelector('.answer');a.style.display=a.style.display==='block'?'none':'block';};
+ cards.appendChild(div);
 });
 
 const questions=[
-{q:"Which leads view the septal wall?",a:"V1 and V2"},
-{q:"Which leads view the anterior wall?",a:"V3 and V4"},
-{q:"Which leads view the lateral wall?",a:"V5 and V6"},
-{q:"What does the QRS complex represent?",a:"Ventricular depolarization"},
-{q:"What does the T wave represent?",a:"Ventricular repolarization"}
+['V1 is placed where?',['4th ICS right sternal border','5th ICS left midclavicular','Midaxillary line'],'4th ICS right sternal border'],
+['Which leads view the septal wall?',['V1-V2','V3-V4','V5-V6'],'V1-V2'],
+['Which leads view the anterior wall?',['V1-V2','V3-V4','V5-V6'],'V3-V4'],
+['Which leads view the lateral wall?',['V1-V2','V3-V4','V5-V6'],'V5-V6'],
+['V4 is placed at?',['5th ICS left midclavicular','Right sternal border','Midaxillary line'],'5th ICS left midclavicular'],
+['V5 is placed at?',['Anterior axillary line','Sternal border','Between V2 and V4'],'Anterior axillary line'],
+['V6 is placed at?',['Midaxillary line','Right chest','Midclavicular right'],'Midaxillary line'],
+['V3 is located?',['Between V2 and V4','At V6','At sternum'],'Between V2 and V4'],
+['QRS represents?',['Ventricular depolarization','Atrial contraction','Ventricular filling'],'Ventricular depolarization'],
+['T wave represents?',['Ventricular repolarization','Atrial depolarization','Heart rate'],'Ventricular repolarization']
 ];
 
-let testHTML='<h2>📝 ECG Practice Test</h2>';
-questions.forEach((item,index)=>{
-testHTML+=`<div class="card"><strong>${index+1}. ${item.q}</strong><p><button onclick="this.nextElementSibling.style.display='block'">Show Answer</button></p><p class="answer">${item.a}</p></div>`;
+const quiz=document.getElementById('quiz');
+questions.forEach((q,i)=>{
+ quiz.innerHTML+=`<div class="card"><h3>${i+1}. ${q[0]}</h3>${q[1].map(x=>`<label><input type="radio" name="q${i}" value="${x}">${x}</label><br>`).join('')}</div>`;
 });
 
-document.body.innerHTML += `<section>${testHTML}</section>`;
+function submitQuiz(){
+ let score=0;
+ questions.forEach((q,i)=>{
+  let answer=document.querySelector(`input[name="q${i}"]:checked`);
+  if(answer && answer.value===q[2]) score++;
+ });
+ document.getElementById('score').innerHTML=`Score: ${score}/10 (${score*10}%)`;
+}
