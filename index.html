@@ -3,48 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Med Lab Study Guide | ECG Flash Cards</title>
+<title>Med Lab Study Guide</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
 <header>
-    <h1>🫀 Med Lab Study Guide</h1>
-    <p>ECG V1–V6 Flash Cards</p>
+<h1>🫀 Med Lab Study Guide</h1>
+<p>ECG / EKG V1-V6 Study Tool</p>
 </header>
 
+<nav>
+<button onclick="showSection('flashcards')">1. Flash Cards</button>
+<button onclick="showSection('test')">2. EKG Test</button>
+</nav>
+
 <main>
-
-<section class="diagram">
-<h2>ECG Chest Lead Placement</h2>
-
-<div class="heart">
-    <div class="lead v1">V1<br><span>Septal</span></div>
-    <div class="lead v2">V2<br><span>Septal</span></div>
-    <div class="lead v3">V3<br><span>Anterior</span></div>
-    <div class="lead v4">V4<br><span>Anterior</span></div>
-    <div class="lead v5">V5<br><span>Lateral</span></div>
-    <div class="lead v6">V6<br><span>Lateral</span></div>
-</div>
-
-<p class="memory">
-<strong>Memory:</strong> V1–V2 = Septal | V3–V4 = Anterior | V5–V6 = Lateral
-</p>
-
-</section>
-
-
-<section>
+<section id="flashcards">
 <h2>ECG Flash Cards</h2>
-
 <div id="cards"></div>
-
 </section>
 
+<section id="test" style="display:none;">
+<h2>V1-V6 Practice Test</h2>
+<div id="quiz"></div>
+<button onclick="submitQuiz()">Submit Test</button>
+<h3 id="score"></h3>
+</section>
 </main>
 
 <script src="script.js"></script>
-
 </body>
 </html>
