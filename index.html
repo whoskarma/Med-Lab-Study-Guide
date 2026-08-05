@@ -1,1 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Lab Study Guide</title>
 
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1>🩺 Medical Lab Study Guide</h1>
+    <p>Chapter 3 & Chapter 4 Interactive Review</p>
+
+    <button id="darkModeBtn">🌙 Dark Mode</button>
+</header>
+
+<nav>
+
+    <button class="nav-btn active" data-page="home">
+        Home
+    </button>
+
+    <button class="nav-btn" data-page="chapter3">
+        Chapter 3
+    </button>
+
+    <button class="nav-btn" data-page="chapter4">
+        Chapter 4
+    </button>
+
+    <button class="nav-btn" data-page="flashcards">
+        Flashcards
+    </button>
+
+    <button class="nav-btn" data-page="quiz">
+        Quiz
+    </button>
+
+</nav>
+
+<main>
+
+    <!-- HOME -->
+
+    <section id="home" class="page active">
+
+        <div class="hero">
+
+            <h2>Study Smarter</h2>
+
+            <p>
+                Review everything from your PowerPoints with interactive
+                flashcards and quizzes.
+            </p>
+
+            <div class="progress-container">
+
+                <h3>Your Progress</h3>
+
+                <div class="progress-bar">
+
+                    <div id="progressFill"></div>
+
+                </div>
+
+                <p id="progressText">
+                    0% Complete
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h2>🧬 Chapter 3</h2>
+
+                <ul>
+
+                    <li>Cells</li>
+
+                    <li>Cell Membrane</li>
+
+                    <li>Organelles</li>
+
+                    <li>Passive Transport</li>
+
+                    <li>Active Transport</li>
+
+                    <li>Diffusion</li>
+
+                    <li>Osmosis</li>
+
+                    <li>Mitosis</li>
+
+                    <li>Stem Cells</li>
+
+                    <li>Cell Death</li>
+
+                </ul>
+
+            </div>
+
+            <div class="card">
+
+                <h2>⚡ Chapter 4</h2>
+
+                <ul>
+
+                    <li>Metabolism</li>
+
+                    <li>ATP</li>
+
+                    <li>Cellular Respiration</li>
+
+                    <li>Glycolysis</li>
+
+                    <li>DNA</li>
+
+                    <li>RNA</li>
+
+                    <li>Transcription</li>
+
+                    <li>Translation</li>
+
+                    <li>Protein Synthesis</li>
+
+                    <li>Mutations</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CHAPTER 3 -->
+
+    <section id="chapter3" class="page">
+
+        <h2>🧬 Chapter 3 Notes</h2>
+
+        <div id="chapter3Content"></div>
+
+    </section>
+
+    <!-- CHAPTER 4 -->
+
+    <section id="chapter4" class="page">
+
+        <h2>⚡ Chapter 4 Notes</h2>
+
+        <div id="chapter4Content"></div>
+
+    </section>
+
+    <!-- FLASHCARDS -->
+
+    <section id="flashcards" class="page">
+
+        <h2>🧠 Flashcards</h2>
+
+        <div id="flashcardContainer">
+
+            <div class="flashcard">
+
+                <div class="flashcard-inner">
+
+                    <div class="flash-front">
+
+                        Click Start
+
+                    </div>
+
+                    <div class="flash-back">
+
+                        Answer
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flash-buttons">
+
+            <button id="prevCard">
+                ⬅ Previous
+            </button>
+
+            <button id="flipCard">
+                🔄 Flip
+            </button>
+
+            <button id="nextCard">
+                Next ➡
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- QUIZ -->
+
+    <section id="quiz" class="page">
+
+        <h2>✅ Quiz</h2>
+
+        <div id="quizContainer">
+
+            <div id="question"></div>
+
+            <div id="answers"></div>
+
+            <button id="nextQuestion">
+
+                Next Question
+
+            </button>
+
+            <h3 id="score">
+
+                Score: 0
+
+            </h3>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <p>
+
+        Medical Lab Study Guide
+
+    </p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
