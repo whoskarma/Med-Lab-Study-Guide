@@ -1,7 +1,7 @@
 // ---------- Navigation ----------
 
 const pages = document.querySelectorAll(".page");
-const navButtons = document.querySelectorAll(".nav-btn");
+const navButtons = document.querySelectorAll(".nav");
 
 navButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -14,19 +14,18 @@ navButtons.forEach(button => {
         document
             .getElementById(button.dataset.page)
             .classList.add("active");
-
     });
 });
 
 // ---------- Dark Mode ----------
 
-const darkBtn = document.getElementById("darkModeBtn");
+const themeBtn = document.getElementById("themeBtn");
 
-darkBtn.addEventListener("click", () => {
+themeBtn.addEventListener("click", () => {
 
     document.body.classList.toggle("dark");
 
-    darkBtn.textContent =
+    themeBtn.textContent =
         document.body.classList.contains("dark")
         ? "☀ Light Mode"
         : "🌙 Dark Mode";
@@ -43,7 +42,7 @@ function updateProgress(){
 
     if(progress > 100) progress = 100;
 
-    document.getElementById("progressFill").style.width =
+    document.getElementById("progressBar").style.width =
         progress + "%";
 
     document.getElementById("progressText").textContent =
@@ -53,61 +52,86 @@ function updateProgress(){
 
 // ---------- Chapter Notes ----------
 
-const chapter3 = [
+const chapter3Notes = [
+
 "Cells are the basic unit of structure and function.",
-"Cell membrane is selectively permeable.",
+"Cells become specialized through differentiation.",
+"The plasma membrane is selectively permeable.",
+"The cell membrane is mainly phospholipids and proteins.",
 "Ribosomes make proteins.",
 "Rough ER contains ribosomes.",
-"Smooth ER makes lipids.",
-"Golgi apparatus packages proteins.",
+"Smooth ER synthesizes lipids.",
+"Golgi apparatus modifies and packages proteins.",
 "Mitochondria produce ATP.",
-"Lysosomes digest waste.",
-"Diffusion moves high → low concentration.",
+"Lysosomes digest waste and worn-out cell parts.",
+"The cytoskeleton supports the cell.",
+"Centrioles help during cell division.",
+"Cilia move mucus or fluids across cell surfaces.",
+"Flagella move the entire cell.",
+
+"Diffusion moves substances from high to low concentration.",
+"Facilitated diffusion uses transport proteins.",
 "Osmosis is movement of water.",
-"Facilitated diffusion uses channels.",
 "Active transport requires ATP.",
-"Endocytosis moves material into a cell.",
-"Exocytosis moves material out.",
+"Endocytosis brings material into the cell.",
+"Exocytosis releases material from the cell.",
+
 "Interphase prepares the cell for division.",
-"Mitosis produces two identical cells.",
-"Prophase, Metaphase, Anaphase, Telophase.",
+"Mitosis has four phases: Prophase, Metaphase, Anaphase, Telophase.",
+"Cytokinesis divides the cytoplasm.",
 "Stem cells can become specialized cells.",
 "Apoptosis is programmed cell death.",
-"Necrosis is cell death from injury."
+"Necrosis results from injury."
+
 ];
 
-const chapter4 = [
-"Metabolism is all chemical reactions.",
+const chapter4Notes = [
+
+"Metabolism includes all chemical reactions.",
 "Anabolism builds molecules.",
 "Catabolism breaks molecules.",
-"ATP is the cell's energy currency.",
-"ATP becomes ADP after losing phosphate.",
-"Glycolysis is anaerobic.",
-"Cellular respiration needs oxygen.",
+"ATP is the main energy source.",
+"ATP becomes ADP after losing a phosphate.",
+"Cellular respiration makes ATP.",
+"Glycolysis is the first stage of respiration.",
 "DNA stores genetic information.",
-"Genes code for proteins.",
-"DNA replication occurs before cell division.",
+"Genes contain instructions for proteins.",
+"DNA replication copies DNA.",
 "Transcription makes mRNA.",
 "Translation makes proteins.",
-"Ribosomes build proteins.",
+"Ribosomes are the site of protein synthesis.",
 "tRNA carries amino acids.",
-"Mutations change DNA."
+"Mutations change DNA sequences."
+
 ];
 
 function loadNotes(){
 
-    const ch3 = document.getElementById("chapter3Content");
-    const ch4 = document.getElementById("chapter4Content");
+    const ch3 = document.getElementById("chapter3Notes");
+    const ch4 = document.getElementById("chapter4Notes");
 
-    ch3.innerHTML = "";
-    ch4.innerHTML = "";
+    chapter3Notes.forEach(note=>{
 
-    chapter3.forEach(note=>{
-        ch3.innerHTML += `<div class="card"><p>${note}</p></div>`;
+        const div=document.createElement("div");
+
+        div.className="note";
+
+        div.textContent=note;
+
+        ch3.appendChild(div);
+
     });
 
-    chapter4.forEach(note=>{
-        ch4.innerHTML += `<div class="card"><p>${note}</p></div>`;
+    chapter4Notes.forEach(note=>{
+
+        const div=document.createElement("div");
+
+        div.className="note";
+
+        div.textContent=note;
+
+        ch4.appendChild(div);
+
     });
 
 }
@@ -116,238 +140,104 @@ loadNotes();
 
 // ---------- Flashcards ----------
 
-const flashcards = [
+const flashcards=[
+
 {
-question:"What is the basic unit of structure and function in the body?",
-answer:"The Cell"
+question:"Basic unit of life?",
+answer:"Cell"
 },
+
 {
-question:"Which organelle produces ATP?",
+question:"Powerhouse of the cell?",
 answer:"Mitochondria"
 },
+
 {
-question:"What organelle packages proteins?",
+question:"Organelle that makes proteins?",
+answer:"Ribosomes"
+},
+
+{
+question:"Packages proteins?",
 answer:"Golgi Apparatus"
 },
+
 {
-question:"Which organelle makes proteins?",
-answer:"Ribosomes"
-},
-{
-question:"What transport requires ATP?",
-answer:"Active Transport"
-},
-{
-question:"Water moves across a membrane by what process?",
+question:"Movement of water?",
 answer:"Osmosis"
 },
+
 {
-question:"Movement from high to low concentration?",
-answer:"Diffusion"
+question:"Transport requiring ATP?",
+answer:"Active Transport"
 },
-{
-question:"Cell division of the nucleus?",
-answer:"Mitosis"
-},
-{
-question:"What is programmed cell death?",
-answer:"Apoptosis"
-},
-{
-question:"What molecule stores genetic information?",
-answer:"DNA"
-},
-{
-question:"Energy currency of the cell?",
-answer:"ATP"
-},
-{
-question:"RNA that carries genetic code?",
-answer:"mRNA"
-},
-{
-question:"Where are proteins made?",
-answer:"Ribosomes"
-},
+
 {
 question:"First stage of cellular respiration?",
 answer:"Glycolysis"
 },
+
 {
-question:"What process makes proteins?",
-answer:"Translation"
+question:"Genetic material?",
+answer:"DNA"
+},
+
+{
+question:"RNA carrying genetic code?",
+answer:"mRNA"
+},
+
+{
+question:"Programmed cell death?",
+answer:"Apoptosis"
 }
+
 ];
 
-let cardIndex = 0;
-let flipped = false;
+let currentCard=0;
 
-const front = document.querySelector(".flash-front");
-const back = document.querySelector(".flash-back");
-const inner = document.querySelector(".flashcard-inner");
+const flashCard=document.getElementById("flashCard");
+const front=document.getElementById("cardFront");
+const back=document.getElementById("cardBack");
 
-function loadCard(){
+function showCard(){
 
-    front.textContent = flashcards[cardIndex].question;
-    back.textContent = flashcards[cardIndex].answer;
+    front.textContent=flashcards[currentCard].question;
 
-    inner.classList.remove("flipped");
-    flipped = false;
+    back.textContent=flashcards[currentCard].answer;
+
+    flashCard.classList.remove("flip");
 
 }
 
-document.getElementById("flipCard").onclick = ()=>{
+showCard();
 
-    inner.classList.toggle("flipped");
-    flipped = !flipped;
+document.getElementById("flipCard").onclick=()=>{
+
+    flashCard.classList.toggle("flip");
+
     updateProgress();
 
 };
 
-document.getElementById("nextCard").onclick = ()=>{
+document.getElementById("nextCard").onclick=()=>{
 
-    cardIndex++;
+    currentCard++;
 
-    if(cardIndex>=flashcards.length)
-        cardIndex=0;
+    if(currentCard>=flashcards.length)
+        currentCard=0;
 
-    loadCard();
-
-};
-
-document.getElementById("prevCard").onclick = ()=>{
-
-    cardIndex--;
-
-    if(cardIndex<0)
-        cardIndex=flashcards.length-1;
-
-    loadCard();
+    showCard();
 
 };
 
-loadCard();
+document.getElementById("prevCard").onclick=()=>{
 
+    currentCard--;
 
-// ---------- Quiz ----------
+    if(currentCard<0)
+        currentCard=flashcards.length-1;
 
-const quiz = [
-
-{
-question:"Which organelle is called the powerhouse of the cell?",
-choices:["Golgi","Nucleus","Mitochondria","Lysosome"],
-correct:2
-},
-
-{
-question:"Which transport requires ATP?",
-choices:["Diffusion","Osmosis","Facilitated Diffusion","Active Transport"],
-correct:3
-},
-
-{
-question:"What carries genetic information?",
-choices:["Protein","DNA","ATP","Lipid"],
-correct:1
-},
-
-{
-question:"Which RNA carries the genetic code?",
-choices:["tRNA","rRNA","mRNA","None"],
-correct:2
-},
-
-{
-question:"What is the first step of cellular respiration?",
-choices:["Translation","Mitosis","Glycolysis","DNA Replication"],
-correct:2
-},
-
-{
-question:"Which organelle makes proteins?",
-choices:["Golgi","Ribosomes","Lysosomes","Centrioles"],
-correct:1
-},
-
-{
-question:"Programmed cell death is called:",
-choices:["Necrosis","Apoptosis","Diffusion","Metabolism"],
-correct:1
-},
-
-{
-question:"ATP stands for:",
-choices:[
-"Adenosine Triphosphate",
-"Amino Transfer Protein",
-"Active Transport Protein",
-"Adenine Transfer Process"
-],
-correct:0
-}
-
-];
-
-let q = 0;
-let score = 0;
-
-const question = document.getElementById("question");
-const answers = document.getElementById("answers");
-const scoreBox = document.getElementById("score");
-
-function loadQuestion(){
-
-    question.innerHTML =
-    `<h3>${quiz[q].question}</h3>`;
-
-    answers.innerHTML="";
-
-    quiz[q].choices.forEach((choice,index)=>{
-
-        const btn=document.createElement("button");
-
-        btn.textContent=choice;
-
-        btn.onclick=()=>{
-
-            if(index===quiz[q].correct){
-
-                score++;
-
-            }
-
-            scoreBox.textContent="Score: "+score;
-
-            updateProgress();
-
-        };
-
-        answers.appendChild(btn);
-
-    });
-
-}
-
-document.getElementById("nextQuestion").onclick=()=>{
-
-    q++;
-
-    if(q>=quiz.length){
-
-        question.innerHTML=
-        `<h2>Quiz Finished!</h2>`;
-
-        answers.innerHTML="";
-
-        scoreBox.innerHTML=
-        `Final Score: ${score}/${quiz.length}`;
-
-        return;
-
-    }
-
-    loadQuestion();
+    showCard();
 
 };
-
-loadQuestion();
